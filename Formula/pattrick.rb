@@ -4,9 +4,9 @@
 class Pattrick < Formula
   desc "CLI for managing Personal Access Tokens (PAT) in Azure DevOps"
   homepage "https://github.com/jvanbuel/pattrick"
-  url "https://github.com/jvanbuel/pattrick/releases/download/v0.1.0/pattrick-mac.tar.gz"
-  sha256 "81ad5e2ba5d86e8a85072ca7b759330714adb7fba76c75b8aa0add27ab24bd6c"
-  version "0.1.0"
+  url "https://github.com/jvanbuel/pattrick/releases/download/v0.3.0/pattrick-x86_64-apple-darwin.tar.gz"
+  sha256 "99fdf815e36cfec4a135fd2c72bcdb26255c0195d94c9ab627f6cca104a1b1e1"
+  version "0.3.0"
 
   def install
     bin.install "pattrick"
