@@ -6,7 +6,7 @@ class Pattrick < Formula
   homepage "https://github.com/jvanbuel/pattrick"
   url "https://github.com/jvanbuel/pattrick/releases/download/v0.3.3/pattrick-x86_64-apple-darwin.tar.gz"
   sha256 "5203152973240bf073000f80499d1d3a1c8fe82b0d8b9979673073f1b1412a39"
-  version "0.3.0"
+  version "0.3.3"
 
   def install
     bin.install "pattrick"
