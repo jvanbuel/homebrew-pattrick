@@ -1,0 +1,25 @@
+class Pattrick < Formula
+  desc "Pattrick command line interface"
+  homepage "https://www.github.com/jvanbuel/pattrick"
+  if OS.mac? && Hardware::CPU.intel?
+    url "https://github.com/jvanbuel/pattrick/releases/download/v<version>/pattrick-x86_64-apple-darwin.tar.gz"
+    sha256 "<macos_intel_sha256>"
+  end
+  if OS.mac? && Hardware::CPU.arm?
+    url "https://github.com/jvanbuel/pattrick/releases/download/v<version>/pattrick-aarch64-apple-darwin.tar.gz"
+    sha256 "<macos_arm_sha256>"
+  end
+  if OS.linux? && Hardware::CPU.intel?
+    url "https://github.com/jvanbuel/pattrick/releases/download/v<version>/pattrick-x86_64-unknown-linux-gnu.tar.gz"
+    sha256 "<linux_intel_sha256>"
+  end
+  version "<version>"
+
+  def install
+    bin.install Dir.glob("**/pattrick")
+  end
+
+  test do
+    system "#{bin}/pattrick", "--help"
+  end
+end
