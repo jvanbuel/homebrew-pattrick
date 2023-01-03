@@ -1,4 +1,3 @@
-
 name: Check homebrew recipe and modify versions
 
 on:
@@ -7,7 +6,7 @@ on:
     - cron: "0 */12 * * *"
   push:
     paths:
-      - '.github/workflows/update_recipe.yml'
+      - ".github/workflows/update_recipe.yml"
 
 jobs:
   checkupdate:
@@ -15,22 +14,30 @@ jobs:
     env:
       RECIPE: Formula/pattrick.rb
     steps:
-    - name: Check out repo
-      uses: actions/checkout@v2
+      - name: Check out repo
+        uses: actions/checkout@v2
 
-    - name: Check latest version
-      id: latest
-      run: |
-        echo "::set-output name=version::$(curl -s https://crates.io/api/v1/crates/pattrick | jq -r '.crate.newest_version')"
-    - name: Check current version
-      id: current
-      run: |
-        echo "::set-output name=version::$(grep 'version \".*\"' $RECIPE | grep -o '[0-9]*\.[0-9]*.[0-9]*')"
-    - name: Check if they are the same
-      id: same
-      run: |
-        current=${{ steps.current.outputs.version }}
-        latest=${{ steps.latest.outputs.version }}
-        echo $latest
-        echo $current
-        echo "::set-output name=version::$(if [ $latest == $current ]; then echo 'true'; else echo 'false'; fi)"
+      - name: Check latest version
+        id: latest
+        run: |
+          echo "::set-output name=version::$(curl -s https://crates.io/api/v1/crates/pattrick | jq -r '.crate.newest_version')"
+      - name: Check current version
+        id: current
+        run: |
+          echo "::set-output name=version::$(grep 'version \".*\"' $RECIPE | grep -o '[0-9]*\.[0-9]*.[0-9]*')"
+      - name: Check if they are the same
+        id: same
+        run: |
+          current=${{ steps.current.outputs.version }}
+          latest=${{ steps.latest.outputs.version }}
+          echo $latest
+          echo $current
+          echo "::set-output name=version::$(if [ $latest == $current ]; then echo 'true'; else echo 'false'; fi)"
+      - name: Modify recipe if they are different
+        if: steps.same.outputs.version == 'false'
+        run: |
+          python3 release.py --noninteractive
+      - name: Trigger a pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: Updated from version ${{ steps.current.outputs.version }} to ${{ steps.latest.outputs.version }}
