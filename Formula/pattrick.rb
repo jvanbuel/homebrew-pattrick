@@ -2,18 +2,18 @@ class Pattrick < Formula
   desc "Pattrick command line interface"
   homepage "https://www.github.com/jvanbuel/pattrick"
   if OS.mac? && Hardware::CPU.intel?
-    url "https://github.com/jvanbuel/pattrick/releases/download/v0.3.6/pattrick-x86_64-apple-darwin.tar.gz"
-    sha256 "2796cbe680b95ffdedae2bc0610726a2108b2aff2a893874f3b52382e4f77830"
+    url "https://github.com/jvanbuel/pattrick/releases/download/v0.3.7/pattrick-x86_64-apple-darwin.tar.gz"
+    sha256 "d2905652758be96903a24e6ae87580950d55391c06f04b9a262dc1cb4463714a"
   end
   if OS.mac? && Hardware::CPU.arm?
-    url "https://github.com/jvanbuel/pattrick/releases/download/v0.3.6/pattrick-aarch64-apple-darwin.tar.gz"
-    sha256 "8aa6bc20efd5c350cc6289172adf16337b6246462030d6508aa00dbdeee206e8"
+    url "https://github.com/jvanbuel/pattrick/releases/download/v0.3.7/pattrick-aarch64-apple-darwin.tar.gz"
+    sha256 "ba71063471dd77c633d58195a7baeccd97ef62ffdd76cbdf2ac225cf1ebe2840"
   end
   if OS.linux? && Hardware::CPU.intel?
-    url "https://github.com/jvanbuel/pattrick/releases/download/v0.3.6/pattrick-x86_64-unknown-linux-gnu.tar.gz"
-    sha256 "ff933781900b98895c569aaa3ba156b5cab73c799fd5d275a6dca8d20ce63062"
+    url "https://github.com/jvanbuel/pattrick/releases/download/v0.3.7/pattrick-x86_64-unknown-linux-gnu.tar.gz"
+    sha256 "1f82cb298f01f8dd8180b074bf0487d9eb9bae48ae73e85019c951e6d50e3b34"
   end
-  version "0.3.6"
+  version "0.3.7"
 
   def install
     bin.install Dir.glob("**/pattrick")
